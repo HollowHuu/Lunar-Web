@@ -1,12 +1,19 @@
 'use client';
 
 import React, { useState, useEffect } from 'react'
+import HeaderDropdown from './header-dropdown';
 
 export default function Header() {
     const [mounted, setMounted] = useState(false);
+    const [isMenuOpen, setMenuOpen] = useState(false)
+
     useEffect(() => {
         setMounted(true)
     }, []);
+
+    const toggleMenu = () => {
+        setMenuOpen(!isMenuOpen)
+    }
 
     if(!mounted) return null;
     return (
@@ -25,8 +32,10 @@ export default function Header() {
                 </a>
             </div>
             <div className="relative inline-block text-white ">
-                <svg version="1.0" xmlns="http://www.w3.org/2000/svg" height="50" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid meet"><g transform="translate(0.000000,400.000000) scale(0.100000,-0.100000)" fill="#ffffff" stroke="none"><path d="M1510 2865 l0 -245 1410 0 1410 0 0 245 0 245 -1410 0 -1410 0 0-245z"/><path d="M1510 2005 l0 -245 1410 0 1410 0 0 245 0 245 -1410 0 -1410 0 0-245z"/><path d="M1510 1115 l0 -245 1410 0 1410 0 0 245 0 245 -1410 0 -1410 0 0-245z"/></g></svg>
-                {/* Insert dropdown on hover */}
+                <img src="/next.svg" alt="" onClick={toggleMenu} />
+                {isMenuOpen && (
+                    <HeaderDropdown></HeaderDropdown>
+                )}
             </div>
         </div>
     )

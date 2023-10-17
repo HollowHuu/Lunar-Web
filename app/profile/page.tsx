@@ -2,8 +2,7 @@
 export default function Profile() {
 
     return (
-        <div className="">
-        <div className='min-h-screen'>        
+        <div className="min-h-screen">        
         <div className='relative blur-sm'>
           <div className='absolute inset-0 bg-gradient-to-t from-[#322842]'></div>
           
@@ -14,9 +13,8 @@ export default function Profile() {
             HollowHuu
           </div>
           <div className="bg-gradient-to-b from-[#322842] to-black h-[50vh] m-0">
-            test
+            
           </div>
         </div>
-      </div>
     )
 }
