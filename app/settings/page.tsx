@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 
 import ChangeEmail from "@/components/menus/changeEmail";
+import ChangeUsername from "@/components/menus/changeUsername";
 
 export default function Settings() {
     const [menu, setMenu] = useState("connections")
@@ -18,10 +19,10 @@ export default function Settings() {
                     <p>Test</p>
                 )}
                 {menu == 'change-email' && (
-                    <ChangeEmail></ChangeEmail>
+                    <ChangeEmail />
                 )}
                 {menu == 'change-username' && (
-                    <p>Test</p>
+                    <ChangeUsername />
                 )}
             </div>
         </div>

@@ -32,7 +32,7 @@ export default function Header() {
                 </a>
             </div>
             <div className="relative inline-block text-white ">
-                <img src="/next.svg" alt="" onClick={toggleMenu} />
+                <img src="/menu.svg" alt="" onClick={toggleMenu} />
                 {isMenuOpen && (
                     <HeaderDropdown></HeaderDropdown>
                 )}
