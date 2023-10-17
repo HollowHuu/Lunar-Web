@@ -1,9 +1,9 @@
 import Image from 'next/image'
+import Header from '@/components/header'
 
 export default function Home() {
   return (
-    <main className="my-[2rem] flex flex-col items-center justify-center min-h-screen w-full">
-
+    <div className="flex flex-col items-center justify-center min-h-screen w-full">
       <div className='text-6xl font-light mb-8'>Welcome to Lunar!</div>
       <div className='max-w-[600px] mb-4 rounded-lg shadow-sm overflow-hidden border-slate-100 border-2 p-4'>
         <div className='text-3xl'>What is Lunar?</div>
@@ -26,6 +26,6 @@ export default function Home() {
         </div>
       </div>
 
-    </main>
+    </div>
   )
 }
