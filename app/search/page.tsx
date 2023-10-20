@@ -40,7 +40,11 @@ export default function Search() {
 
   useEffect(() => {
     if (search != "") {
-      fetch("http://localhost:8080/api/users?name=" + search)
+      fetch("/api/users", {
+        headers: {
+          "name": search,
+        }
+      })
         .then((res) => res.json())
         .then((data) => {
             let html: React.JSX.Element[] = [];

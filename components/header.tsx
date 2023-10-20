@@ -1,11 +1,13 @@
 'use client';
 
 import React, { useState, useEffect } from 'react'
+import { useSession } from 'next-auth/react';
 import HeaderDropdown from './header-dropdown';
 
 export default function Header() {
+
     const [mounted, setMounted] = useState(false);
-    const [isMenuOpen, setMenuOpen] = useState(false)
+    const [isMenuOpen, setMenuOpen] = useState(false);
 
     useEffect(() => {
         setMounted(true)
