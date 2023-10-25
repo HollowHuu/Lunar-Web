@@ -3,6 +3,7 @@ import { headers } from 'next/headers'
 import { NextResponse } from 'next/server';
 
 import {prisma} from '@/app/dbConnection';
+import { User } from '@/components/types';
 
 
 type ResponseData = {
@@ -20,7 +21,7 @@ export async function GET() {
     if(!name) return Response.json({error: 'No name provided'})
 
     // Pull users from the mysql DB using drizzle-orm
-    const result = await prisma.user.findMany({
+    const result: User[] = await prisma.user.findMany({
         where: {
             name: { contains: name}
         }
