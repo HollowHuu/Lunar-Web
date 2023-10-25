@@ -17,7 +17,7 @@ export default function Header() {
         setMenuOpen(!isMenuOpen)
     }
 
-    if(!mounted) return null;
+    // if(!mounted) return null;
     return (
         <div className="flex items-center h-[60px] text-right m-0 right-0 left-0 top-0 font-medium">
             <img className='mr-[16px]' src="https://cdn.discordapp.com/attachments/774650675593609268/1136331735265722408/Bot_logo_witout_back.png" alt="logo" width="40" />

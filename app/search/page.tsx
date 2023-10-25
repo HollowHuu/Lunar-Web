@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef, ChangeEvent, ReactHTMLElement } fro
 
 interface User {
   name: string;
-  avatar: string;
+  image: string;
   banner: string;
 }
 
@@ -49,7 +49,6 @@ export default function Search() {
         .then((data) => {
             let html: React.JSX.Element[] = [];
             let users: User[] = data;
-
             // users = filterUsers(users, search);
             users = sortedUsers(users, search);
 
@@ -67,7 +66,7 @@ export default function Search() {
                             </p>
                             <img
                                 className="rounded-full m-auto"
-                                src={users[i].avatar}
+                                src={users[i].image}
                                 alt="Profile picture"
                             />
                         </div>
@@ -99,7 +98,7 @@ export default function Search() {
         </div>
 
         {/* Search results */}
-        <div className="w-full max-w-[500px] mt-[20px] pr-[10px]">{result}</div>
+        <div className="w-full w-[500px] mt-[20px]">{result}</div>
       </div>
     </div>
   );

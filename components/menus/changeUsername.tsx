@@ -1,5 +1,26 @@
+import { useSession, signIn, signOut } from 'next-auth/react'
+import Link from 'next/link'
 
 export default function ChangeUsername() {
+    const { data: session, status } = useSession();
+    if(status == 'unauthenticated') return (
+        <div className='mx-auto text-center'>
+        <h1>Access Denied<br />You must be signed in to view this page</h1>
+        <br />
+        <p>
+            <Link
+                className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+                href="/api/auth/signin"
+                onClick={(e) => {
+                    e.preventDefault();
+                    signIn();
+                }}
+            >
+                Sign In
+            </Link>
+        </p>
+      </div>
+    )
     return (
         <div>
             <div className="text-center text-[1.5rem] pb-[1rem] border-b-2 border-b-slate-300 mb-[1rem]">Change Username</div>
