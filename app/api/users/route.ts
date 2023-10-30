@@ -6,13 +6,6 @@ import {prisma} from '@/app/dbConnection';
 import { User } from '@/components/types';
 
 
-type ResponseData = {
-    name: string;
-    avatar: string;
-    banner: string;
-}[];
-
-
 export async function GET() {
     const headerList = headers()
 

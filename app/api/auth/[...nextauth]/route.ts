@@ -1,11 +1,11 @@
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { PrismaClient } from "@prisma/client";
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import DiscordProdvider from 'next-auth/providers/discord'
 
 const prisma = new PrismaClient()
 
-const handler = NextAuth({
+export const authOptions = {
     adapter: PrismaAdapter(prisma),
     providers: [
         DiscordProdvider({
@@ -13,6 +13,15 @@ const handler = NextAuth({
             clientId: process.env.DISCORD_CLIENT_ID as string
         })
     ],
-})
+    callbacks: {
+        session({ session, user }) {
+            session.user.id = user.id
+            session.user.riot = user.riot
+            return session;
+        }
+    
+    }
+} satisfies NextAuthOptions
+const handler = NextAuth(authOptions)
 
 export { handler as GET, handler as POST }

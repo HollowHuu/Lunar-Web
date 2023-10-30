@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 
 import ChangeBanner from "@/components/menus/changeBanner";
 import ChangeUsername from "@/components/menus/changeUsername";
+import Connections from "@/components/menus/connections";
 
 export default function Settings() {
     const [menu, setMenu] = useState("connections")
@@ -16,7 +17,7 @@ export default function Settings() {
             </div>
             <div className="p-[1.5rem] border-2 rounded-lg">
                 {menu == 'connections' && (
-                    <p>Test</p>
+                    <Connections />
                 )}
                 {menu == 'change-banner' && (
                     <ChangeBanner />

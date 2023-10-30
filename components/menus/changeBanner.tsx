@@ -6,26 +6,47 @@ export default function ChangeEmail() {
     const { data: session, status } = useSession()
     const [image, setImage] = useState(new File([], ''));
 
+    function getBase64(e: File) {
+        return new Promise ((resolve, reject) => {
+            const reader = new FileReader();
+
+            reader.onload = (event) => {
+                resolve(event.target?.result);
+            }
+
+            reader.onerror = (err) => {
+                reject(err);
+            }
+
+            reader.readAsDataURL(e);
+        })
+    }
+
     const changeImage = (e: ChangeEvent<HTMLInputElement>) => {
         if(!e.target.files) return;
         setImage(e.target.files[0]);
       };
 
       useEffect(() => {
+        async function sendImage() {
         if(!image) return;
         if(!image.name) return;
-        console.log({image})
-        const formData = new FormData();
-        formData.append('image', image);
-        console.log(formData)
+
+        // Make a buffer to send to the server
+        const buffer = await getBase64(image);
+        
         fetch('/api/account/banner', {
           method: 'POST',
-          body: formData,
+          body: JSON.stringify({
+            image: buffer
+          }),
         })
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
           });
+        }
+        sendImage();
       }, [image])
 
     if(status == 'loading') return (
