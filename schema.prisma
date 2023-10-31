@@ -44,6 +44,7 @@ model User {
   riot          String?
   accounts      Account[]
   sessions      Session[]
+  keys		Keys[]
 }
 
 model VerificationToken {
@@ -52,4 +53,11 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Keys {
+  id           String    @id @default(cuid())
+  apiKey       String?   @unique
+  userId       String    @unique
+  user         User     @relation(fields: [userId], references: [id])
 }
