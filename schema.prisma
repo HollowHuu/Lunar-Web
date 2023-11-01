@@ -44,7 +44,7 @@ model User {
   riot          String?
   accounts      Account[]
   sessions      Session[]
-  keys		Keys[]
+  keys		      Keys?
 }
 
 model VerificationToken {
