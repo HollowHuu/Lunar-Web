@@ -26,7 +26,8 @@ export default function Profile() {
     return (
         <div className="min-h-screen">        
         <div className='relative border-0 '>
-          <div className='absolute inset-0 bg-gradient-to-t from-[#322842] border-0 backdrop-blur-sm'></div>
+          {banner != "" && <div className='absolute inset-0 bg-gradient-to-t from-[#322842] border-0 backdrop-blur-sm'></div>}
+          
           
           <img src={banner} alt="Banner" className='w-full m-0 border-0 ' />
           {/* <div className='absolute bottom-0 w-full h-full'></div> */}
