@@ -12,7 +12,7 @@ export async function GET() {
     if(!session) return Response.json({error: 'No session found'}, {status: 401})
 
     const puuid = session?.user.riot
-    if(!puuid) return Response.json({error: 'Riot account linked'}, {status: 401})
+    if(!puuid) return Response.json({error: 'no Riot account linked'}, {status: 401})
 
     
     const profileData = await fetch(`https://api.henrikdev.xyz/valorant/v1/by-puuid/account/${puuid}`, {
