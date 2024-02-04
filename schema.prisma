@@ -1,29 +1,29 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
-generator client {
-  provider        = "prisma-client-js"
-}
-
 model Account {
-  id                 String  @id @default(cuid())
-  userId             String
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String?  @db.Text
-  access_token       String?  @db.Text
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String?  @db.Text
-  session_state      String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
+  @@index([userId], map: "Account_userId_fkey")
 }
 
 model Session {
@@ -32,6 +32,8 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId], map: "Session_userId_fkey")
 }
 
 model User {
@@ -42,9 +44,9 @@ model User {
   image         String?
   banner        String?
   riot          String?
+  keys          APIKey?
   accounts      Account[]
   sessions      Session[]
-  keys		      Keys?
 }
 
 model VerificationToken {
@@ -55,9 +57,9 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-model Keys {
-  id           String    @id @default(cuid())
-  apiKey       String?   @unique
-  userId       String    @unique
-  user         User     @relation(fields: [userId], references: [id])
+model APIKey {
+  id     String  @id @default(cuid())
+  apiKey String? @unique
+  userId String  @unique
+  user   User    @relation(fields: [userId], references: [id])
 }

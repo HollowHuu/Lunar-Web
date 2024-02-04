@@ -3,7 +3,7 @@ import Unauthenticated from '@/components/unauthenticated';
 import { useSession, signIn } from 'next-auth/react'
 import { useState, useEffect } from 'react' 
 
-export default function Profile() {
+export default function Dash() {
     const { data: session, status } = useSession();
 
 
