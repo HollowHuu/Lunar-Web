@@ -34,14 +34,14 @@ export const saveAPIKey = async (apiKey: string, userId: string) => {
 
     if(!user) throw new Error('User not found');
 
-    const keys = await prisma.APIKey.findUnique({
+    const keys = await prisma.aPIKey.findUnique({
         where: {
             userId: userId
         }
     })
 
     if(keys) {
-        await prisma.APIKey.update({
+        await prisma.aPIKey.update({
             where: {
                 userId: userId
             },
@@ -50,7 +50,7 @@ export const saveAPIKey = async (apiKey: string, userId: string) => {
             }
         })
     } else {
-        await prisma.APIKey.create({
+        await prisma.aPIKey.create({
             data: {
                 apiKey: apiKey,
                 user: {
