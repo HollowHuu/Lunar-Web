@@ -2,7 +2,7 @@ import { useSession, signIn, signOut } from 'next-auth/react'
 import { useState, useEffect, ChangeEvent } from 'react'
 import Link from 'next/link'
 
-export default function ChangeEmail() {
+export default function ChangePofilePicture() {
     const { data: session, status } = useSession()
     const [image, setImage] = useState(new File([], ''));
 
@@ -35,6 +35,7 @@ export default function ChangeEmail() {
         // Make a buffer to send to the server
         const buffer = await getBase64(image);
         
+        // TODO - Send the image to the server, and save it to the user's account.
         fetch('/api/account/banner', {
           method: 'POST',
           body: JSON.stringify({
@@ -75,11 +76,11 @@ export default function ChangeEmail() {
     )
     return (
         <div>
-            <div className="text-center text-[1.5rem] pb-[1rem] border-b-2 border-b-slate-300 mb-[1rem]">Change Banner (NOT WORKING)</div>
+            <div className="text-center text-[1.5rem] pb-[1rem] border-b-2 border-b-slate-300 mb-[1rem]">Change Profile Picture (NOT WORKING)</div>
             <form className="box-border outline-0" action="">
                 <div className="grid grid-cols-4 gap-[1rem] mb-[1rem] items-center">
                     <label className="text-right pr-[1rem]" htmlFor="currentBanner">Current Banner</label>
-                    <input className="bg-[#9b9b9b] border-2 border-[#727272] rounded-md p-[.5rem] text-lg outline-0" type="text" id="currentBanner" name="currentBanner" value="hollowhuu@aesirdev.tech" disabled />
+                    <img src={session?.user.image || '/images/default-banner.jpg'} alt="Current Banner" />
                 </div>
                 <div className="grid grid-cols-4 gap-[1rem] mb-[1rem] items-center">
                         {/* Image upload */}
