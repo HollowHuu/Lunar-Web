@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react';
 import HeaderDropdown from './header-dropdown';
+import Image from 'next/image'
 
 export default function Header() {
 
@@ -20,8 +21,8 @@ export default function Header() {
     // if(!mounted) return null;
     return (
         <div className="flex items-center h-[60px] text-right m-0 right-0 left-0 top-0 font-medium">
-            <img className='mr-[16px]' src="https://cdn.discordapp.com/attachments/774650675593609268/1136331735265722408/Bot_logo_witout_back.png" alt="logo" width="40" />
-            <a href="/">Lunar App</a>
+            <Image className='mr-[16px]' src="https://cdn.discordapp.com/attachments/774650675593609268/1136331735265722408/Bot_logo_witout_back.png" alt="logo" height={40} width={40} />
+            <a href="/">Luna Web</a>
             <div className="flex-auto text-center justify-evenly text-lg">
                 <a href="/profile" className="p-5 ">
                     <span className=''>Profile</span>
@@ -36,7 +37,7 @@ export default function Header() {
 
             { /* TODO - Find a better way to do icons */}
             <div className="relative inline-block text-white ">
-                <img src="/menu.svg" alt="" onClick={toggleMenu} />
+                <Image src="./menu.svg" alt="" onClick={toggleMenu} height={60} width={60} />
                 {isMenuOpen && (
                     <HeaderDropdown></HeaderDropdown>
                 )}

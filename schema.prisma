@@ -50,11 +50,11 @@ model User {
 }
 
 model VerificationToken {
-  identifier String
+  id String   @id @default(cuid())
   token      String   @unique
   expires    DateTime
 
-  @@unique([identifier, token])
+  @@unique([id, token])
 }
 
 model APIKey {

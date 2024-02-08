@@ -86,7 +86,7 @@ export default function Connections() {
             
         }
         getRiot();
-    }, [status])
+    }, [status, session?.user.riot])
 
     if(status == 'unauthenticated') return (
         <div className='mx-auto text-center'>
