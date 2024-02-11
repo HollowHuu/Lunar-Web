@@ -58,5 +58,6 @@ export interface ValoarntMMR {
         small: string;
         large: string;
         wide: string;
-    }
+    },
+    currentrankimage: string;
 }

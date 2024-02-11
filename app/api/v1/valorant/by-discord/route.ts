@@ -15,7 +15,7 @@ export async function GET() {
     if(!valid) return Response.json({error: 'Invalid token provided'}, {status: 401})
 
     const discordId = h.get('Discord-ID')
-    if(!discordId) return Response.json({error: 'No Discord ID provided'}, {status: 400})
+    if(!discordId) return Response.json({error: 'No Dis cord ID provided'}, {status: 400})
 
     const user = await prisma.user.findFirst({
         where: {
@@ -65,7 +65,8 @@ export async function GET() {
             small: profileData.card.small as string,
             large: profileData.card.large as string,
             wide: profileData.card.wide as string
-        }
+        },
+        currentrankimage: mmr.images.large as string
     }
 
     return Response.json(responseData)
