@@ -12,7 +12,7 @@ export default function Settings() {
         <div className="min-h-screen box-border mt-[2rem] mx-[1.5rem]">
             <div className="box-border grid grid-cols-3 gap-[1rem] mb-[1rem]">
                 <button className="block p-[.5rem] border-solid border-white border-2 rounded-lg hover:bg-purple-400" onClick={e => setMenu('connections')}>Connections</button>
-                <button className="block p-[.5rem] border-solid border-white border-2 rounded-lg hover:bg-purple-400" onClick={e => setMenu('change-pfp')}>Change Banner</button>
+                <button className="block p-[.5rem] border-solid border-white border-2 rounded-lg hover:bg-purple-400" onClick={e => setMenu('change-pfp')}>Change Profifle Picture</button>
                 <button className="block p-[.5rem] border-solid border-white border-2 rounded-lg hover:bg-purple-400" onClick={e => setMenu('change-username')}>Change Username</button> 
             </div>
             <div className="p-[1.5rem] border-2 rounded-lg">

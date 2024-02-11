@@ -2,12 +2,14 @@
 import Unauthenticated from '@/components/unauthenticated';
 import { useSession, signIn } from 'next-auth/react'
 import { useState, useEffect } from 'react' 
+import { ValoarntMMR } from '@/components/types';
 
 export default function Profile() {
   const { data: session, status } = useSession();
 
   const [banner, setBanner] = useState("");
   const [username, setUsername] = useState("");
+  const [valorant, setValorant] = useState({} as ValoarntMMR)
 
   const fetchData = async () => {
     const data = await fetch('/api/valorant/bypuuid')
@@ -15,6 +17,7 @@ export default function Profile() {
     console.log({data})
     setBanner(data.banner.wide)
     setUsername(data.name)
+    setValorant(data)
   }
 
   useEffect(() => {
@@ -37,8 +40,8 @@ export default function Profile() {
           
           {banner && (
             <div>
-              <div className='absolute inset-0 bg-gradient-to-t from-[#322842] border-0 backdrop-blur-sm'></div>
-              <img src={banner} alt="Banner" className='w-full m-0 border-0 ' />
+              <div className='absolute inset-0 bg-gradient-to-t from-[#2B4B70] border-0 backdrop-blur-sm'></div>
+              <img src={banner} alt="Banner" className='w-full m-0 border-0' />
             </div>
           )}
           {/* <div className='absolute bottom-0 w-full h-full'></div> */}
@@ -77,11 +80,29 @@ export default function Profile() {
 
           </div>
           {banner && (
-            <div className="bg-gradient-to-b from-[#322842] to-black min-h-[50vh] m-0">
-  
+            <div className="bg-gradient-to-b from-[#2B4B70] to-black min-h-[50vh] m-0">
+              <div className='text-3xl text-white text-center'>
+                <strong>Stats</strong>
+
+                <div>
+                  {valorant.elo && (
+                    <div>
+                      <p><strong>Elo:</strong> {valorant.elo}</p>
+                      <p><strong>Current Tier:</strong> {valorant.currenttierpatched}</p> 
+
+                    </div>
+                  )}
+                  {!valorant.elo && (
+                    <div>
+                      <strong>Loading...</strong>
+                    </div>
+                  )}
+
+              </div>
+            </div>
             </div>
           )}
- 
         </div>
+        
     )
 }
