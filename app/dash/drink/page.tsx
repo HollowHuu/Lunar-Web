@@ -1,4 +1,5 @@
 'use client';
+import Loading from '@/components/loading';
 import Unauthenticated from '@/components/unauthenticated';
 import { useSession, signIn } from 'next-auth/react'
 import { useState, useEffect } from 'react' 
@@ -16,14 +17,11 @@ export default function Drink() {
         setMounted(true);
     }, [])
 
-    if(!mounted) return (
-        <div className='min-h-screen'>
-            {/* TODO - Make loading component */}
-            Loading...
-        </div>
+    if(!mounted || status == "loading") return (
+        <Loading></Loading>
     )
 
-    if(status != "authenticated" && status != "loading") return (
+    if(status != "authenticated") return (
         <Unauthenticated></Unauthenticated>
     )
 
@@ -85,10 +83,19 @@ export default function Drink() {
 
             {/* If we don't have information on them */}
             {!drinkingData() && (
-                <p>Coming soon...</p>
+                <div className="text-center">
+                    <p>
+                        We don&apos;t have any information on you yet. <br />
+                        <button className='border-2 border-blue-500 p-2 rounded-full bg-blue-300' onClick={e => {
+                            e.preventDefault()
+                            // TODO - Add a way to update the user's drinking data
+                        }}>Update your drinking data</button>
+                    </p>
+                </div>
+                
             )}
 
-
+            
   
     </div>
     )

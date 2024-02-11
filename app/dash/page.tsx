@@ -7,7 +7,15 @@ export default function Dash() {
     const { data: session, status } = useSession();
 
 
-    if(status != "authenticated") return (
+    useEffect(() => {
+        if(status != "authenticated") {
+            signIn();
+        }
+    }, [status])
+
+
+
+    if(status !== "authenticated") return (
         <Unauthenticated></Unauthenticated>
     )
 

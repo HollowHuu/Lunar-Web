@@ -8,8 +8,8 @@ import { SessionProvider } from './sessionProvider'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Lunar web app.',
-  description: 'New website for Lunar',
+  title: 'Luna web app.',
+  description: 'End me',
 }
 
 export default function RootLayout({
