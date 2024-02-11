@@ -48,7 +48,8 @@ export async function GET() {
             small: profileData.card.small as string,
             large: profileData.card.large as string,
             wide: profileData.card.wide as string
-        }
+        },
+        currentrankimage: mmr.current_data.images.large as string
     }
 
     return Response.json(responseData)
