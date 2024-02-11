@@ -66,7 +66,7 @@ export async function GET() {
             large: profileData.card.large as string,
             wide: profileData.card.wide as string
         },
-        currentrankimage: mmr.images.large as string
+        currentrankimage: mmr.current_data.images.large as string
     }
 
     return Response.json(responseData)
