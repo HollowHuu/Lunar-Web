@@ -12,6 +12,8 @@ interface RiotError {
     errors: [{}]
 }
 
+
+
 export default function Connections() {
     const { data: session, status } = useSession();
 
@@ -32,10 +34,26 @@ export default function Connections() {
         setModal(false);
     }
 
+    const unlinkAccount = (event: MouseEvent) => {
+        event.preventDefault();
+        console.log('unlink account')
+
+        fetch("/api/account/riot/unlink", {
+            method: "GET"
+        }).then((res) => res.json())
+        .then((data) => {
+            if (data.riot) console.log(data)
+            setRiot({
+                name: '',
+                puuid: ''
+            })
+        })
+    }
+
     const searchAccount = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();        
 
-        fetch('/api/account/riot', {
+        fetch('/api/account/riot/account', {
             method: 'GET',
             headers: {
                 'name': (e.currentTarget[0] as HTMLFormElement).value,
@@ -53,7 +71,7 @@ export default function Connections() {
     const confirmAccount = (e: MouseEvent) => {
         e.preventDefault();
 
-        fetch('/api/account/riot', {
+        fetch('/api/account/riot/link', {
             method: 'POST',
             body: JSON.stringify(confirm),
         }).then((res) => {
@@ -118,7 +136,7 @@ export default function Connections() {
                             <div className='text-white text-lg'>
                                 <p>{riot.name}</p>
                                 <p>{riot.puuid}</p>
-                                <button className='mt-2 border-2 border-slate-300 p-2 rounded-md'>Disconnect Account</button>(Coming Soon)
+                                <button className='mt-2 border-2 border-slate-300 p-2 rounded-md' onClick={e => unlinkAccount(e)}>Disconnect Account</button>
                             </div>
                         )}
                         {!riot.name && (

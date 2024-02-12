@@ -55,6 +55,8 @@ export async function GET() {
 
     if(!mmr) return Response.json({error: 'No mmr found'}, {status: 404})
 
+    console.log({mmr, profileData})
+
     const responseData: ValoarntMMR = {
         name: profileData.name as string,
         tag: profileData.tag as string,
@@ -66,7 +68,8 @@ export async function GET() {
             large: profileData.card.large as string,
             wide: profileData.card.wide as string
         },
-        currentrankimage: mmr.current_data.images.large as string
+        currentrankimage: mmr.current_data.images.large as string,
+        account_level: profileData.account_level as string
     }
 
     return Response.json(responseData)

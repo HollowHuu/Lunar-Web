@@ -80,7 +80,7 @@ export default function Profile() {
 
           </div>
           {banner && (
-            <div className="bg-gradient-to-b from-[#2B4B70] to-black min-h-[50vh] m-0">
+            <div className="bg-gradient-to-b from-[#2B4B70] to-[#1D202B] min-h-[50vh] m-0">
               <div className='text-3xl text-white text-center'>
                 <strong>Stats</strong>
 
@@ -88,7 +88,7 @@ export default function Profile() {
                   {valorant.elo && (
                     <div>
                       <p><strong>Elo:</strong> {valorant.elo}</p>
-                      <p><strong>Current Tier:</strong> {valorant.currenttierpatched}</p> 
+                      <p><strong>Current Rank:</strong> {valorant.currenttierpatched}</p> 
 
                     </div>
                   )}

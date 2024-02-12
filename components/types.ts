@@ -60,4 +60,5 @@ export interface ValoarntMMR {
         wide: string;
     },
     currentrankimage: string;
+    account_level: string;
 }
