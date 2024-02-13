@@ -22,8 +22,7 @@ export const genApiKey = async (user: User) => {
     return apiKey;
 }
 
-// TODO - Make an endpoint to save the api key to the user
-// TODO - Combine this with the genApiKey function
+// TODO - Create admin page to view and delete API keys
 // NOTE - Untested code
 export const saveAPIKey = async (apiKey: string, userId: string) => {
     const user = await prisma.user.findUnique({

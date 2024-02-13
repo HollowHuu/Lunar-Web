@@ -25,14 +25,7 @@ export default function Connections() {
     const [modal, setModal] = useState(false);
     const [error, setError] = useState("");
 
-    const openModal = (e: MouseEvent) => {
-        e.preventDefault();
-        setModal(true);
-    }
-    const closeModal = (e: MouseEvent) => {
-        e.preventDefault();
-        setModal(false);
-    }
+
 
     const unlinkAccount = (event: MouseEvent) => {
         event.preventDefault();
@@ -50,41 +43,14 @@ export default function Connections() {
         })
     }
 
-    const searchAccount = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();        
-
-        fetch('/api/account/riot/account', {
-            method: 'GET',
-            headers: {
-                'name': (e.currentTarget[0] as HTMLFormElement).value,
-            }
-        }).then((res) => res.json())
+    const redirect = () => {
+        fetch("/api/oauth/link").then((res) => res.json())
         .then((data) => {
-            // console.log(data);
-            if(data.status != 200) return setError(data.message || data.error);
-
-            const valo: ValorantAccount = data.data;
-            setConfirm(valo)
+            console.log(data) // NOTE - Verify the data is correct
+            window.location.href = data.url;
         })
     }
 
-    const confirmAccount = (e: MouseEvent) => {
-        e.preventDefault();
-
-        fetch('/api/account/riot/link', {
-            method: 'POST',
-            body: JSON.stringify(confirm),
-        }).then((res) => {
-            if(res.status != 200) {
-                res.json().then(data => {
-                    if(data.message) return setError(data.message);
-                    if(data.error) return setError(data.error)
-                })
-                
-            }
-            window.location.reload();
-        })
-    }
 
     useEffect(() => {
         async function getRiot() {
@@ -140,59 +106,8 @@ export default function Connections() {
                             </div>
                         )}
                         {!riot.name && (
-                            <div>
-                                                   <div className='text-white text-lg'>
-                                <button className='mt-2 border-2 border-slate-300 p-2 rounded-md' onClick={openModal}>Connect Account</button>
-                            </div>
-                                <ReactModal isOpen={modal} style={{content: {
-                                    backgroundColor: 'rgba(0,0,0,0.7)',
-                                },
-                                overlay: {
-                                    backgroundColor: 'rgba(0,0,0,0)',
-                                
-                                }}} >
-                                    <div className='text-center align-center'>
-
-                                        {/* Close button top right */}
-                                        <button className='absolute top-3 right-3 text-3xl text-red-500' onClick={closeModal}>X</button>
-
-                                        {/* For for user#tag */}
-                                        <div className='text-white text-lg'>
-                                            <div>Enter your Riot username and tag (e.g. user#tag)</div>
-                                            <form onSubmit={searchAccount}>
-                                                <input type="text" className='rounded-md text-black'/>
-                                                <button type='submit'></button>
-                                            </form>
-                                        </div>
-                                        <div className='mt-5'>
-                                        {error && (
-                                                  
-                                            <div className='text-red-500'>
-                                                <p className='p-2'>Error</p>
-                                                <p className='p-2'>{error}</p>
-                                            </div>
-    
-                                        )}
-                                            {(confirm as ValorantAccount).name && (
-                                                <div>
-                                                    <div className='grid grid-cols-2 border-2 rounded-md bg-[rgba(0,0,0,0.7)] text-2xl '>
-                                                        <p>Username:</p>
-                                                        <p className='text-left'>{(confirm as ValorantAccount).name +'#'+ (confirm as ValorantAccount).tag}</p>
-
-                                                        <p>Region:</p>
-                                                        <p className='text-left'>{(confirm as ValorantAccount).region}</p>
-
-                                                        <p>Account level:</p>
-                                                        <p className='text-left'>{(confirm as ValorantAccount).account_level}</p>
-                                                    </div>
-                                                    <p className='m-5'><strong>Is this the right account?</strong></p>
-                                                    <button className='border-[1px] rounded-sm bg-black p-2' onClick={confirmAccount}>Confirm Choice</button>
-                                                </div>
-
-                                            )}
-                                        </div>
-                                    </div>
-                                </ReactModal>
+                            <div className='text-white text-lg'>
+                                <button className='mt-2 border-2 border-slate-300 p-2 rounded-md' onClick={redirect}>Connect Account</button>
                             </div>
                         )}
                     </div>
