@@ -21,7 +21,7 @@ export default function Header() {
     // if(!mounted) return null;
     return (
         <div className="flex items-center h-[60px] text-right m-0 right-0 left-0 top-0 font-medium">
-            <Image className='mr-[16px]' src="https://cdn.discordapp.com/attachments/1150358954564669512/1206328373450645554/06d02db78b778e7503a47b5d03ca60c9.png?ex=65db9bd8&is=65c926d8&hm=d29242446c888920a71c5ae9a09a3d4b326c2b65d9697cb0bc2816918e148f98&" alt="logo" height={40} width={40} />
+            <Image className='mr-[16px]' src="./logo.svg" alt="logo" height={40} width={40} />
             <a href="/">Luna Web</a>
             <div className="flex-auto text-center justify-evenly text-lg">
                 <a href="/profile" className="p-5 ">

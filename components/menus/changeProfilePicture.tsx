@@ -29,22 +29,22 @@ export default function ChangePofilePicture() {
 
       useEffect(() => {
         async function sendImage() {
-        if(!image) return;
-        if(!image.name) return;
+            if(!image) return;
+            if(!image.name) return;
 
-        // Make a buffer to send to the server
-        const buffer = await getBase64(image);
-        
-        // TODO - Send the image to the server, and save it to the user's account.
-        fetch('/api/account/banner', {
-          method: 'POST',
-          body: JSON.stringify({
-            image: buffer
-          }),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
+            // Make a buffer to send to the server
+            const buffer = await getBase64(image);
+            
+            // TODO - Send the image to the server, and save it to the user's account.
+            fetch('/api/account/banner', {
+                method: 'POST',
+                body: JSON.stringify({
+                    image: buffer
+                }),
+            })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
           });
         }
         sendImage();

@@ -1,15 +1,15 @@
 generator client {
   provider = "prisma-client-js"
+  engineType = "library"
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model Account {
-  id                String  @id @default(cuid())
-  userId            String
+  id                String  @id @default(cuid()) @map("_id")
   type              String
   provider          String
   providerAccountId String
@@ -21,23 +21,24 @@ model Account {
   id_token          String? @db.Text
   session_state     String?
   user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId            String
 
   @@unique([provider, providerAccountId])
-  @@index([userId], map: "Account_userId_fkey")
+  @@index([userId])
 }
 
 model Session {
   id           String   @id @default(cuid())
   sessionToken String   @unique
-  userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId       String
 
-  @@index([userId], map: "Session_userId_fkey")
+  @@index([userId])
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String    @id @default(cuid()) @map("_id")
   name          String?
   email         String?   @unique
   emailVerified DateTime?
