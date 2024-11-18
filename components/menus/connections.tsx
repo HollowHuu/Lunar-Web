@@ -47,7 +47,7 @@ export default function Connections() {
         fetch("/api/oauth/link").then((res) => res.json())
         .then((data) => {
             console.log(data) // NOTE - Verify the data is correct
-            window.location.href = data.url;
+            window.location.href = data;
         })
     }
 

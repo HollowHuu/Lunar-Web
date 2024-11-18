@@ -6,5 +6,5 @@ export async function GET() {
 
     const link = `${provider}/authorize?client_id=${process.env.RIOT_CLIENT_ID}&redirect_uri=${callBackUrl}&response_type=code&scope=openid`
     console.log(link);
-    return Response.json(link); // WARNING - Untested
+    return Response.json(link);
 }
